@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pl-PL">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Moja strona</title>
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+	<br><br><br>
+	<div class="container">
+		<br><br>
+	<h1>Zamówienie</h1>
+	<br>
+	<h3>Produkty</h3>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nazwa produktu</th>
+				<th>Ilość</th>
+				<th>Cena za sztuke</th>
+				<th>Suma</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${hashMap}">
+				<td th:utext="${product.key.name}"></td>
+				<td><span th:utext="${product.value}"></span></td>
+				<td th:utext="${product.key.price}+' zł'"></td>
+				<td th:utext="${#numbers.formatDecimal(product.key.price*product.value,1,2,'COMMA')}+' zł'"></td>
+			</tr>
+		</tbody>
+	</table>
+		<br>
+		<h3>Dane zamówienia</h3>
+		<table class="table table-striped">
+			<tr>
+				<th>Imię</th>
+				<td th:utext="${firstname}"></td>
+			</tr>
+			<tr>
+				<th>Nazwisko</th>
+				<td th:utext="${lastname}"></td>
+			</tr>
+			<tr>
+				<th>Miejscowość</th>
+				<td th:utext="${locality}"></td>
+			</tr>
+			<tr>
+				<th>Ulica i numer ulicy</th>
+				<td th:utext="${street}"></td>
+			</tr>
+			<tr>
+				<th>Telefon</th>
+				<td th:utext="${zipCode}"></td>
+			</tr>
+			<tr>
+				<th>Kod pocztowy</th>
+				<td th:utext="${phone}"></td>
+			</tr>
+			<tr>
+				<th>Przesyłka</th>
+				<td th:utext="${shipment}"></td>
+			</tr>
+			<tr>
+				<th>Uwagi do zamówienia</th>
+				<td th:utext="${description}"></td>
+			</tr>
+			<!--<tr>-->
+				<!--<th>Zapamiętać dane wysyłki dla przyszłych zamówień</th>-->
+				<!--@if (order.Remember)-->
+				<!--{-->
+				<!--<th>Tak</th>-->
+				<!--}-->
+				<!--else-->
+				<!--{-->
+				<!--<th>Nie</th>-->
+				<!--}-->
+			<!--</tr>-->
+
+			<tr>
+				<th>Razem do zapłaty: </th>
+				<td><span th:utext="${#numbers.formatDecimal(sum,1,2,'COMMA')}+' zł'"></span></td>
+			</tr>
+
+		</table>
+
+		<a class="btn btn-lg btn-primary btn-block" th:href="@{/order/accept(save=${savedata})}">Złóż zamówienie</a>
+</div>
+<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

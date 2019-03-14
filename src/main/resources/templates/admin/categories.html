@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pl-PL">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>SpringShop</title>
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<table border="1">
+		<tr>
+		<td>id</td>
+		<td>nazwa</td>
+		<td></td>
+		<td></td>
+		</tr>
+		<tr th:each="category : ${categories}">
+			<td th:utext="${category.id}"></td>
+			<td><a th:href="@{/admin/categories/subcategories(id=${category.id})}" th:utext="${category.name}"></a></td>
+			<td><a th:utext="Edytuj" th:href="@{/admin/categories/edit(id=${category.id})}"></a></td>
+			<td><a th:utext="Usuń" th:href="@{/admin/categories/remove(id=${category.id})}"></a></td>
+		</tr>
+	</table>
+	<a th:href="@{/admin/categories/add}">Dodaj kategorie</a>
+	<br>
+	<a th:href="@{/admin/}">Cofnij</a>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pl-PL">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Moja strona</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<!-- Login form -->
+	<div class="container">
+	<div class="row">
+	<div class="col-sm-6">
+			The email or password is incorrect!</div>
+		<form th:action="@{/login}" method="post">
+			<h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+			<label for="inputEmail" class="sr-only">Email</label> <input
+				type="email" id="email" name="email" class="form-control"
+				placeholder="Email" required autofocus> <label
+				for="inputPassword" class="sr-only">Password</label> <input
+				type="password" id="password" name="password" class="form-control"
+				placeholder="Password" required>
+			<div class="checkbox mb-3">
+				<label> <input type="checkbox" name="remember-me" />
+					Remember me
+				</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
+				in</button>
+		</form>
+		</div>
+	
+	<!-- Login form -->
+	
+	<!-- Registration form -->
+	
+	 <div class="col-sm-6">
+     <form class="form-horizontal" role="form" method="POST" th:action="@{/signup}" th:object="${user}">
+      <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6">
+     </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6">
+                 <h2>Register New User</h2>
+                 <hr>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="name">First Name</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                         <input type="text" th:field="*{firstname}" class="form-control" id="firstname"
+                                placeholder="First Name" required autofocus>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="name">Last Name</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                         <input type="text" th:field="*{lastname}" class="form-control" id="lastname"
+                                placeholder="Last name" required autofocus>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="email">Email</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                         <input type="text" th:field="*{email}" class="form-control" id="email"
+                                placeholder="username@jackrutorial.com" required autofocus>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3">
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="password">Password</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group has-danger">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                         <input type="password" th:field="*{password}" class="form-control" id="password"
+                                placeholder="Password" required>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3">
+                 <div class="form-control-feedback">
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6">
+                 <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
+             </div>
+         </div>
+     </form>
+ </div>
+	
+	<!-- Registration form -->
+	</div>
+</div>
+<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pl-PL">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Moja strona</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+
+<br><br><br><br>
+
+ <div class="container">
+     <h2>Rejestracja</h2>
+     <hr>
+     <form class="form-horizontal" role="form" method="POST" th:action="@{/signup}" th:object="${form}">
+      <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6">
+                 <div th:if="${success}">
+                 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}"></div>
+                 </div>
+                 <div th:if="${error}">
+              <div class="alert alert-danger" role="alert" th:if="${msg}" th:utext="${msg}">
+              </div>
+            </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="name">Imię</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                         <input type="text"  class="form-control" id="firstname" name="firstname"
+                                placeholder="Imię" required autofocus>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="name">Nazwisko</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                         <input type="text" class="form-control" id="lastname" name="lastname"
+                                placeholder="Nazwisko" required autofocus>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="email">E-mail</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                         <input type="email" class="form-control" id="email" name="email"
+                                placeholder="email@email.pl" required autofocus>
+                     </div>
+                 </div>
+             </div>
+             <!--<div class="col-md-3">-->
+                 <!--<div class="form-control-feedback">-->
+                         <!--<span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">-->
+                         <!--</span>-->
+                 <!--</div>-->
+             <!--</div>-->
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="password">Hasło</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group has-danger">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                         <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Hasło" required>
+                     </div>
+                 </div>
+             </div>
+             <!--<div class="col-md-3">-->
+                 <!--<div class="form-control-feedback">-->
+                         <!--<span class="text-danger align-middle" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">-->
+                         <!--</span>-->
+                 <!--</div>-->
+             <!--</div>-->
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="password">Powtórz hasło</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group has-danger">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                         <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                                placeholder="Powtórz hasło" required>
+                     </div>
+                 </div>
+             </div>
+             <!--<div class="col-md-3">-->
+                 <!--<div class="form-control-feedback">-->
+                         <!--<span class="text-danger align-middle" th:if="${#fields.hasErrors('confirm_password')}" th:errors="*{confirm_password}">-->
+                         <!--</span>-->
+                 <!--</div>-->
+             <!--</div>-->
+         </div>
+         <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6">
+                 <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i> Zapisz się</button>
+             </div>
+         </div>
+     </form>
+ </div>
+
+<!--<h4>Utwórz nowe konto.</h4>-->
+<!--<hr />-->
+<!--<div class="form-group">-->
+    <!--<label class="col-md-2 control-label">E-mail</label>-->
+    <!--<div class="col-md-10">-->
+        <!--<input type="text" th:field="*{email}" class="form-control" id="email"-->
+        <!--placeholder="email@email.pl" required autofocus>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+    <!--@Html.Label("Hasło", new { @class = "col-md-2 control-label" })-->
+    <!--<div class="col-md-10">-->
+        <!--@Html.PasswordFor(m => m.Password, new { @class = "form-control" })-->
+    <!--</div>-->
+
+    <!--<label class="col-md-2 control-label">Hasło</label>-->
+    <!--<div class="col-md-10">-->
+        <!--<input type="text" th:field="*{email}" class="form-control" id="email"-->
+               <!--placeholder="email@email.pl" required autofocus>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+    <!--@Html.Label("Powtórz hasło", new { @class = "col-md-2 control-label" })-->
+    <!--<div class="col-md-10">-->
+        <!--@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })-->
+    <!--</div>-->
+
+    <!--<label class="col-md-2 control-label">Powtórz hasło</label>-->
+    <!--<div class="col-md-10">-->
+        <!--<input type="text" th:field="*{email}" class="form-control" id="email"-->
+               <!--placeholder="email@email.pl" required autofocus>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+    <!--<div class="col-md-offset-2 col-md-10">-->
+        <!--<input type="submit" class="btn btn-default" value="Zapisz się" />-->
+    <!--</div>-->
+<!--</div>-->
+
+ <div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

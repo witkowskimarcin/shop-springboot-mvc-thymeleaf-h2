@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pl-PL">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Moja strona</title>
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+	<br><br><br>
+	<div class="container">
+		<div th:if="${empty}"><h1>Koszyk jest pusty</h1></div>
+		<div th:if="${!empty}">
+	<h1>Koszyk</h1>
+	<br>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nazwa produktu</th>
+				<th>Ilość</th>
+				<th>Cena za sztuke</th>
+				<th>Suma</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${cart}">
+				<td th:utext="${product.key.name}"></td>
+				<td><a th:href="@{/cart/minus(code=${product.key.id})}">-</a><span th:utext="${product.value}"></span><a
+					th:href="@{/cart/plus(code=${product.key.id})}">+</a></td>
+				<td th:utext="${product.key.price}+' zł'"></td>
+				<td th:utext="${#numbers.formatDecimal(product.key.price*product.value,1,2,'COMMA')}+' zł'"></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>Razem :</td>
+				<td th:utext="${#numbers.formatDecimal(sum,1,2,'COMMA')}+' zł'"></td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<!-- button to empty the cart -->
+	<a class="btn btn-danger" th:href="@{/cart/removeAll}">Opróżnij koszyk</a>
+	<!-- create a checkout button -->
+	<a class="btn btn-primary" th:href="@{/order}">Złóż zamówienie</a>
+</div>
+	</div>
+<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

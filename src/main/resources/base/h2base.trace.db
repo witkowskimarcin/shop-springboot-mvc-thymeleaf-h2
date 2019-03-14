@@ -1,0 +1,4 @@
+2019-01-08 22:35:51 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Błąd składniowy w wyrażeniu SQL "DELETE FROM USER_ROLE WHERE USER_ID 85[*] "
+Syntax error in SQL statement "DELETE FROM USER_ROLE WHERE USER_ID 85[*] "; SQL statement:
+delete FROM USER_ROLE where user_id 85 [42000-197]

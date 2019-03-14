@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pl-PL">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Moja strona</title>
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">
+		    <a th:href="@{/}">Strona główna</a>
+		    </li>
+		    <li class="breadcrumb-item">
+		    <a th:href="@{/}" th:utext="${product.subcategory.category.name}"></a>
+		    </li>
+		    <li class="breadcrumb-item active">
+		    <a th:href="@{/products(subCatId=${product.subcategory.id})}" th:utext="${product.subcategory.name}"></a>
+		    </li>
+		  </ol>
+		</nav>
+
+		<div class="row">
+
+			<div class="col-sm-4">
+
+				<!--- Image Slider -->
+
+				<div id="slides" class="carousel slide" data-ride="carousel">
+					<ul class="carousel-indicators">
+						<li data-target="#slides" data-slide-to="0" class="active"></li>
+						<li data-target="#slides" th:each="i : ${iteration}" th:attr="data-slide-to=${i}"></li>
+					</ul>
+					<div class="carousel-inner" height="250">
+
+						<div class="carousel-item active">
+							<img th:src="@{'data:image/jpeg;base64,'+${product.images.get(0).generateBase64Image()}}"
+								 class="img-circle mx-auto d-block"
+								 height="250" alt="obrazek">
+						</div>
+
+							<div class="carousel-item" th:each="i : ${iteration}">
+								<img th:src="@{'data:image/jpeg;base64,'+${product.images.get(i).generateBase64Image()}}"
+									 class="img-circle mx-auto d-block"
+									 height="250" th:attr="alt=${i}">
+							</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-sm-4">
+				<h3 th:utext="${product.name}"></h3>
+				<h3 th:utext="${product.description}"></h3>
+			</div>
+
+			<div class="col-sm-4">
+
+				<div class="card" style="max-width: 22rem; height: 24rem;">
+					<div class="card-body">
+						<h3 class="card-title text-center"><span th:utext="${product.price}"></span> zł</h3>
+						<h5 class="card-text">Dostępność: <span th:utext="${product.quantity}"></span></h5>
+						<h5 class="card-text">Odbiór osobisty: GRATIS</h5>
+						<h5 class="card-text"><a href="#">Koszty dostawy</a></h5>
+						<h5 class="card-text"><a href="#">Sprawdź dostępność w salonach</a></h5>
+						<a th:if="${product.quantity > 0}" class="btn btn-lg btn-success btn-block" th:href="@{/products/product/add(code=${product.id})}">Do koszyka</a>
+						<a th:if="${product.quantity <= 0}"  class="btn btn-lg btn-danger btn-block" href="#" >Brak produktu</a>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

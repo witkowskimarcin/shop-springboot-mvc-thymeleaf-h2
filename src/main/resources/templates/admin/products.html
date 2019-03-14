@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pl-PL">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>SpringShop</title>
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+	<table border="1">
+		<tr th:each="product : ${products}">
+			<td th:utext="${product.id}">...</td>
+			<td><a th:href="@{/products/product(code=${product.id})}"
+				th:utext="${product.name}"></a></td>
+			<td th:utext="${product.description}">...</td>
+			<td th:utext="${product.price}">...</td>
+			<td th:utext="${product.quantity}">...</td>
+			<td><a th:utext="Edytuj" th:href="@{/admin/products/edit(prodId=${product.id})}"></a></td>
+			<td><a th:utext="Usuń" th:href="@{/admin/products/remove(prodId=${product.id})}"></a></td>
+		</tr>
+	</table>
+	<a th:href="@{/admin/products/add(subCatId=${subCatId})}">Dodaj produkt</a>
+<br>
+	<a th:href="@{/admin/categories/subcategories(id=${catId})}">Cofnij</a>
+
+</body>
+</html>
