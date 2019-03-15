@@ -36,7 +36,7 @@ public class AdminController {
 
 	@GetMapping("/admin")
 	public String adminPanel() {
-		return "/admin/admin";
+		return "admin/admin";
 	}
 
 	//--------------------------------
