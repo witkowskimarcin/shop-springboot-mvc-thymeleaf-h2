@@ -146,14 +146,6 @@ public class MainController {
 		
 		return model;
 	}
-
-	@RequestMapping(value = {"/vue"}, method = RequestMethod.GET)
-	public ModelAndView restIndex() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("vuejs/index");
-
-		return model;
-	}
 	
 	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
 	public ModelAndView login(HttpSession session) {

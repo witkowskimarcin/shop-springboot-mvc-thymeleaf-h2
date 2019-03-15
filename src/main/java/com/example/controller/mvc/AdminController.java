@@ -59,14 +59,14 @@ public class AdminController {
 //		}
 		
 		model.addObject("categories", categories);
-		model.setViewName("/admin/categories");
+		model.setViewName("admin/categories");
 		return model;
 	}
 	
 	@GetMapping("/admin/categories/edit")
 	public ModelAndView adminEditCategory(@RequestParam(value = "id", required=true) long id) {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/admin/categoryEdit");
+		model.setViewName("admin/categoryEdit");
 		Category category = categoryRepository.findById(id);
 		model.addObject(category);
 		return model;
@@ -116,7 +116,7 @@ public class AdminController {
 	@GetMapping("/admin/categories/subcategories")
 	public ModelAndView adminManageCategory(@RequestParam(value = "id", required=true) long id) {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/admin/subcategories");
+		model.setViewName("admin/subcategories");
 		Category category = categoryRepository.findById(id);
 		model.addObject(category);
 		
@@ -135,7 +135,7 @@ public class AdminController {
 	@GetMapping("/admin/categories/category/addSubCat")
 	public ModelAndView adminAddSubCategoryForm(@RequestParam(value = "id", required=true) long id) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/admin/subcategoryAdd");
+		modelAndView.setViewName("admin/subcategoryAdd");
 		modelAndView.addObject("catId",id);
 		return modelAndView;
 	}
@@ -155,7 +155,7 @@ public class AdminController {
 	@GetMapping("/admin/categories/category/editSubCat")
 	public ModelAndView adminEditSubCategory(@RequestParam(value = "id", required=true) long id) {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/admin/subcategoryEdit");
+		model.setViewName("admin/subcategoryEdit");
 		Subcategory subcategory = subcategoryRepository.findById(id);
 		model.addObject(subcategory);
 		model.addObject("catId",subcategory.getCategory().getId());
@@ -195,7 +195,7 @@ public class AdminController {
 	@GetMapping("/admin/products")
 	public ModelAndView adminPanelShowProducts(@RequestParam(value = "subCatId", required=true) long subCatId) {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/admin/products");
+		model.setViewName("admin/products");
 		Subcategory subcategory = subcategoryRepository.findById(subCatId);
 		Iterable<Product> products = productRepository.findAllBySubcategory(subcategory);
 		model.addObject("products", products);
@@ -207,7 +207,7 @@ public class AdminController {
 	@GetMapping("/admin/products/add")
 	public ModelAndView adminAddProductForm(@RequestParam(value = "subCatId", required=true) long subCatId) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/admin/productAdd");
+		modelAndView.setViewName("admin/productAdd");
 		modelAndView.addObject("subCatId",subCatId);
 		return modelAndView;
 	}
@@ -240,7 +240,7 @@ public class AdminController {
 	@GetMapping("/admin/products/edit")
 	public ModelAndView adminEditProduct(@RequestParam(value = "prodId", required=true) long product_id) {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/admin/productEdit");
+		model.setViewName("admin/productEdit");
 		Product product = productRepository.findById(product_id);
 		model.addObject("product", product);
 		model.addObject("subCatId", product.getSubcategory().getId());
@@ -285,7 +285,7 @@ public class AdminController {
 
 		model.addObject("promotedProducts", promotedProducts);
 
-		model.setViewName("/admin/promotedProducts");
+		model.setViewName("admin/promotedProducts");
 		return model;
 	}
 
@@ -404,7 +404,7 @@ public class AdminController {
 
 		model.addObject("orders",orderRepository.findAll());
 
-		model.setViewName("/admin/orders");
+		model.setViewName("admin/orders");
 		return model;
 	}
 
@@ -416,7 +416,7 @@ public class AdminController {
 		model.addObject("order",o);
 		model.addObject("orderDetails",o.getOrderDetails());
 
-		model.setViewName("/admin/orderDetails");
+		model.setViewName("admin/orderDetails");
 		return model;
 	}
 
